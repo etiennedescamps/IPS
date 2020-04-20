@@ -1,5 +1,5 @@
 from collections import Counter
-from scapy.all import sniff
+from scapy.all import sniff, IP
 from scapy import *
 
 dos_warning = False
