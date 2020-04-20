@@ -10,7 +10,7 @@ def custom_action(packet):
     key = (packet[0][1].src, packet[0][1].dst)
     packet_counts.update([key])
     pktID += 1
-    return f"Packet #{pktID}: {packet[0][1].src} ==> {packet[0][1].dst}"
+    return (f"Packet #{pktID}: {packet[0][1].src} ==> {packet[0][1].dst}")
 
 
 while True:
@@ -21,13 +21,13 @@ while True:
         if count >= 3:
             if dos_warning == False:
                 dos_warning = True
-                print f"WARNING: risk of {key[1]} currently being under DoS attack from {key[0]}."
+                print (f"WARNING: risk of {key[1]} currently being under DoS attack from {key[0]}.")
             else:
                 dos_attack = True
-                print f"WARNING: DoS attack from {key[0]} on {key[1]} confirmed, communication from {key[0]} will be ignored."
+                print (f"WARNING: DoS attack from {key[0]} on {key[1]} confirmed, communication from {key[0]} will be ignored.")
                 blacklist.append(key[0])
                 dos_warning = False
-                print f"WARNING: {key[0]} is now ignored by the IPS, resuming monitoring."
+                print (f"WARNING: {key[0]} is now ignored by the IPS, resuming monitoring.")
         elif dos_warning == True:
             dos_warning = False
-            print "Risk of DoS went unconfirmed, all clear."
+            print ("Risk of DoS went unconfirmed, all clear.")
