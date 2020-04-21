@@ -6,7 +6,7 @@ dos_warning = False
 blacklist = []
 
 def pkt_detection(packet):
-    key = (packet[0][1].src, packet[0][1].dst])
+    key = (packet[0][1].src, packet[0][1].dst)
     packet_counts.update([key])
     return ("Packet detected: {} ==> {}".format(packet[0][1].src, packet[0][1].dst))
 
