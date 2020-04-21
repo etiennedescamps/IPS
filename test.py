@@ -15,6 +15,7 @@ def custom_action(packet):
 
 
 while True:
+    print ("Listening...")
     packet_counts = Counter()
     sniff(filter="ip", prn=custom_action, timeout=1)
     sniff(lfilter=lambda pkt: IP in pkt and pkt[IP].src not in blacklist, prn=custom_action, timeout=1)
@@ -28,7 +29,7 @@ while True:
                 print ("WARNING: DoS attack from {} on {} confirmed, communication from {} will be ignored.".format(key[0], key[1], key[0]))
                 blacklist.append(key[0])
                 dos_warning = False
-                print ("WARNING: {} is now ignored by the IPS, resuming monitoring.".format(key[0]))
+                print ("WARNING: {} is now ignored by the IPS, resuming listening.".format(key[0]))
         elif dos_warning == True:
             dos_warning = False
             print ("Risk of DoS went unconfirmed, all clear.")
