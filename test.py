@@ -10,7 +10,7 @@ blacklist = []
 def custom_action(packet):
     key = (packet[0][1].src, packet[0][1].dst)
     packet_counts.update([key])
-    pktID += 1
+    pktID = pktID + 1
     return ("Packet #{}: {} ==> {}".format(pktID, packet[0][1].src, packet[0][1].dst))
 
 
