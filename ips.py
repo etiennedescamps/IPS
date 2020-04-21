@@ -14,7 +14,7 @@ def pkt_detection(packet):
 while True:
     print ("Listening...")
     packet_counts = Counter()
-    sniff(lfilter=lambda pkt: IP in pkt and pkt[IP].src not in blacklist, prn=pkt_detection, timeout=1, iface=["eth0", "eth1, "eth2"])
+    sniff(lfilter=lambda pkt: IP in pkt and pkt[IP].src not in blacklist, prn=pkt_detection, timeout=1, iface=["eth0", "eth1", "eth2"])
     for key, count in packet_counts.items():
         if count >= 5:
             if dos_warning == False:
