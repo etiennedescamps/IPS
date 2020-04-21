@@ -4,14 +4,12 @@ from scapy import *
 
 dos_warning = False
 dos_attack = False
-pktID = -1
 blacklist = []
 
 def custom_action(packet):
     key = (packet[0][1].src, packet[0][1].dst)
     packet_counts.update([key])
-    pktID = pktID + 1
-    return ("Packet #{}: {} ==> {}".format(pktID, packet[0][1].src, packet[0][1].dst))
+    return ("Packet detected: {} ==> {}".format(packet[0][1].src, packet[0][1].dst))
 
 
 while True:
