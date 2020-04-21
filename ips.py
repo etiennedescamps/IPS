@@ -15,7 +15,6 @@ def custom_action(packet):
 while True:
     print ("Listening...")
     packet_counts = Counter()
-    sniff(filter="ip", prn=custom_action, timeout=1)
     sniff(lfilter=lambda pkt: IP in pkt and pkt[IP].src not in blacklist, prn=custom_action, timeout=1)
     for key, count in packet_counts.items():
         if count >= 3:
