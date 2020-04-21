@@ -20,11 +20,14 @@ while True:
             if dos_warning == False:
                 dos_warning = True
                 print ("WARNING: {} might currently be under DoS attack from {}.".format(key[1], key[0]))
-            else:
+            elif key[1] not in blacklist:
                 print ("WARNING: DoS attack from {} on {} confirmed, communication from {} will be ignored.".format(key[0], key[1], key[0]))
                 blacklist.append(key[0])
                 dos_warning = False
                 print ("WARNING: {} is now ignored by the IPS, resuming listening.".format(key[0]))
+            else:
+                dos_warning = False
+                print ("Risk of DoS attack was an attacked address responding, all clear.")
         elif dos_warning == True:
             dos_warning = False
             print ("Risk of DoS attack went unconfirmed, all clear.")
