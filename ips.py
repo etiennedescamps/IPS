@@ -15,7 +15,7 @@ def custom_action(packet):
 while True:
     print ("Listening...")
     packet_counts = Counter()
-    sniff(lfilter=lambda pkt: IP in pkt and pkt[IP].src not in blacklist, prn=custom_action, timeout=1, iface="eth0")
+    sniff(lfilter=lambda pkt: IP in pkt and pkt[IP].src not in blacklist, prn=custom_action, timeout=1, iface=["eth0", "eth1"])
     for key, count in packet_counts.items():
         if count >= 3:
             if dos_warning == False:
