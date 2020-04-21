@@ -6,7 +6,7 @@ dos_warning = False
 blacklist = []
 
 def pkt_detection(packet):
-    key = tuple(sorted([packet[0][1].src, packet[0][1].dst]))
+    key = (packet[0][1].src, packet[0][1].dst])
     packet_counts.update([key])
     return ("Packet detected: {} ==> {}".format(packet[0][1].src, packet[0][1].dst))
 
@@ -16,7 +16,7 @@ while True:
     packet_counts = Counter()
     sniff(lfilter=lambda pkt: IP in pkt and pkt[IP].src not in blacklist, prn=pkt_detection, timeout=1, iface=["eth0", "eth1"])
     for key, count in packet_counts.items():
-        if count >= 7:
+        if count >= 5:
             if dos_warning == False:
                 dos_warning = True
                 print ("WARNING: {} might currently be under DoS attack from {}.".format(key[1], key[0]))
